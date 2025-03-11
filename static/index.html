@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 
+    The document type declaration ensures the document is parsed as HTML5.
+    The lang attribute specifies the language of the document.
+  -->
+  <meta charset="UTF-8" />
+  <!-- 
+    The viewport meta tag ensures proper rendering on mobile devices,
+    by setting the viewport width to the device's width.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Annotation & Extraction</title>
+  <!-- 
+    Google Font: Roboto is imported for modern typography.
+    The font weights 400 (normal) and 500 (medium) are loaded.
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Link to the external CSS file for styling -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <!-- Main container for the application -->
+  <div class="container">
+    
+    <!-- Left Panel: Annotation Classes -->
+    <aside class="left-panel">
+      <h3>Annotation Classes</h3>
+      <!-- Unordered list that will be dynamically populated with annotation classes -->
+      <ul id="classes-list">
+        <!-- Content added via JavaScript -->
+      </ul>
+      <!-- Input field for adding a new annotation class -->
+      <input type="text" id="new-class" placeholder="New class name" />
+      <!-- Button that triggers the addClass function to add a new class -->
+      <button class="add-class" onclick="addClass()">Add Class</button>
+    </aside>
+
+    <!-- Center Panel: Video Player and Controls -->
+    <main class="center-panel">
+      <div class="app-container">
+        <h1>Annotator</h1>
+        <!-- Container for the video element -->
+        <div id="video-container">
+          <!-- Video player where the selected video will be played -->
+          <video id="video-player">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <!-- Custom time bar containing draggable markers -->
+        <div id="custom-timebar">
+          <!-- Marker representing the current time -->
+          <div id="current-marker" class="marker" tabindex="0"></div>
+          <!-- Marker representing the start of an annotation segment -->
+          <div id="start-marker" class="marker" tabindex="0"></div>
+          <!-- Marker representing the end of an annotation segment -->
+          <div id="end-marker" class="marker" tabindex="0"></div>
+        </div>
+        <!-- Controls Section for video playback and annotation actions -->
+        <div id="controls">
+          <div class="left-controls">
+            <!-- Play/Pause button to control video playback -->
+            <button type="button" id="play-pause-btn">Play</button>
+            <!-- Display showing the current time and total duration of the video -->
+            <div id="current-second-display">00:00 / 00:00</div>
+            <!-- Navigation buttons for moving left/right through the video timeline -->
+            <div id="arrow-buttons">
+              <button id="move-left">&#8592;</button>
+              <button id="move-right">&#8594;</button>
+            </div>
+          </div>
+          <div class="right-controls">
+            <!-- Button to save the current annotation -->
+            <button type="button" id="save-json-button" onclick="saveAnnotation()">Save Annotation</button>
+            <!-- Button to finalize the annotation and mark it as completed -->
+            <button type="button" id="finalize-button" onclick="finalizeAnnotation()">Done Annotating</button>
+          </div>
+        </div>        
+      </div>
+      <!-- Section for displaying the list of current annotations for the video -->
+      <section id="annotations-list-container">
+        <h3>Current Annotations</h3>
+        <ul id="annotations-list">
+          <!-- Annotation items will be appended here dynamically -->
+        </ul>
+      </section>
+    </main>
+
+    <!-- Right Panel: List of Available Videos -->
+    <aside class="right-panel">
+      <h3>Available Videos</h3>
+      <!-- Toggle buttons to switch between unfinished and finished videos -->
+      <div class="video-toggle">
+        <button id="toggle-unfinished" class="toggle-button active">Unfinished</button>
+        <button id="toggle-finished" class="toggle-button">Finished</button>
+      </div>
+      <!-- Display area for the currently selected video name -->
+      <div id="selected-video-container">
+        Selected Video: <span id="selected-video-name">None</span>
+      </div>
+      <!-- Unordered list that will be dynamically populated with video filenames -->
+      <ul id="video-list"></ul>
+    </aside>
+  </div>
+
+  <!-- Overlay shown during video extraction processes -->
+  <div id="progress-overlay">
+    <!-- Spinner element for visual feedback during loading/extraction -->
+    <div class="spinner"></div>
+    <div>Extracting...</div>
+  </div>
+
+  <!-- JavaScript file for the application's functionality -->
+  <script src="/static/js/scripts.js"></script>
+</body>
+</html>

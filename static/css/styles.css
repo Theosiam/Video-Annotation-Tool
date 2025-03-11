@@ -1,0 +1,557 @@
+/* =====================
+   CSS Variables
+   Define reusable color and background values.
+===================== */
+:root {
+  --primary-color: #3498db;       /* Main theme color */
+  --secondary-color: #203252;     /* Secondary color for text and accents */
+  --danger-color: #e74c3c;        /* Used for warnings and delete actions */
+  --success-color: #27ae60;       /* Used for success states */
+  --light-bg: #eef2f7;            /* Light background color for body */
+  --panel-bg: #ffffff;            /* Base background for panels */
+  --panel-gradient: linear-gradient(135deg, var(--panel-bg), #f7f9fc);  /* Gradient for panel backgrounds */
+}
+
+/* =====================
+   Global Styles
+   Reset margins, paddings and set common box-sizing.
+===================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--light-bg);
+  color: #333;
+}
+
+/* =====================
+   Layout: Container & Panels
+   Style for overall layout and individual panels.
+===================== */
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  min-height: 100vh;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* Left Panel Styles */
+.left-panel {
+  width: 300px;
+  background: var(--panel-gradient);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.left-panel h3 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+/* Annotation classes list styles */
+#classes-list {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+#classes-list li {
+  background: #a7c0ec85;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#classes-list li:hover {
+  background: #5c9ad8;
+}
+
+#classes-list li.selected {
+  background: #3498db;
+  color: #fff;
+}
+
+#classes-list li button {
+  background: var(--danger-color);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#classes-list li button:hover {
+  background: #c0392b;
+}
+
+/* Input field for new annotation class */
+#new-class {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+/* Button to add a new class */
+button.add-class {
+  width: 100%;
+  padding: 10px;
+  background: var(--secondary-color);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button.add-class:hover {
+  background: #2980b9;
+}
+
+/* Right Panel Styles */
+.right-panel {
+  width: 300px;
+  background: var(--panel-gradient);
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 25px 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.right-panel h3 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+/* Display for selected video name */
+#selected-video-container {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+
+/* List of available videos */
+#video-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+#video-list li {
+  background: #a7c0ec85;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#video-list li:hover {
+  background: #5c9ad8;
+}
+
+#video-list li.selected {
+  background: #3498db;
+  color: #fff;
+}
+
+/* Center Panel Styles */
+.center-panel {
+  flex: 1;
+  background: var(--panel-bg);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-panel h1 {
+  text-align: center;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 960px;
+  margin-bottom: 20px;
+}
+
+/* Video Container Styles */
+#video-container {
+  position: relative;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  margin: 20px auto;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+#video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  display: block;
+}
+
+/* Custom Timebar for video timeline */
+#custom-timebar {
+  position: relative;
+  height: 16px;
+  background: linear-gradient(90deg, #ddd, #bbb);
+  margin: 30px auto;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 960px;
+}
+
+/* Marker Styles on the timebar */
+.marker {
+  position: absolute;
+  width: 12px;
+  height: 24px;
+  background: var(--danger-color);
+  border-radius: 3px;
+  top: -6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 100;
+}
+
+#current-marker {
+  background: var(--primary-color);
+  height: 20px;
+  width: 8px;
+  top: -4px;
+}
+
+#start-marker {
+  background: green;
+}
+
+#end-marker {
+  background: red;
+}
+
+/* Label for markers */
+.marker-label {
+  position: absolute;
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  font-size: 0.8rem;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  top: -30px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Controls Section Styles */
+#controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto 10px auto;
+  gap: 15px;
+}
+
+.left-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Display current video time and duration */
+#current-second-display {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+/* Play/Pause button styling */
+#play-pause-btn {
+  padding: 10px 16px;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#play-pause-btn:hover {
+  background: #2980b9;
+}
+
+#arrow-buttons {
+  display: inline-flex;
+  gap: 10px;
+}
+
+#arrow-buttons button {
+  padding: 10px 16px;
+  background: var(--secondary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#arrow-buttons button:hover {
+  background: #2980b9;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Save annotation button styling */
+#save-json-button {
+  padding: 10px 16px;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+}
+
+#save-json-button:hover {
+  background: #2980b9;
+}
+
+/* Finalize annotation button styling */
+#controls .right-controls #finalize-button {
+  padding: 10px 16px;
+  background: var(--success-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#controls .right-controls #finalize-button:hover {
+  background: #2ecc71;
+}
+
+/* Progress Overlay for extraction/loading */
+#progress-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  font-size: 1.2rem;
+  z-index: 1000;
+}
+
+/* Spinner animation inside the progress overlay */
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid var(--primary-color);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Annotations List Container */
+#annotations-list-container {
+  margin-top: 20px;
+  background: #f7fbfd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%;
+  max-width: 960px;
+}
+
+#annotations-list-container h3 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+
+/* Annotations List Items */
+#annotations-list {
+  list-style: none;
+  padding: 0;
+}
+
+#annotations-list li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#annotations-list li:last-child {
+  border-bottom: none;
+}
+
+.annotation-play-btn {
+  background: var(--success-color);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-right: 10px;
+  transition: background 0.3s ease;
+}
+
+.annotation-play-btn:hover {
+  background: #27ae60;
+}
+
+.annotation-delete-btn {
+  background: var(--danger-color);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: background 0.3s ease;
+}
+
+.annotation-delete-btn:hover {
+  background: #c0392b;
+}
+
+/* Dot indicator for annotations */
+.annotation-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  margin-left: 10px;
+}
+
+/* Video Toggle Buttons (Unfinished/Finished) */
+.video-toggle {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.toggle-button {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background: #f7f9fc;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.toggle-button.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* =====================
+   Responsive Styles
+   Adjust layout for smaller screens.
+===================== */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .left-panel, .right-panel {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .center-panel, .app-container {
+    width: 100%;
+  }
+  #video-container,
+  #custom-timebar,
+  #controls,
+  #annotations-list-container {
+    width: 100%;
+  }
+  #video-container {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  #controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-controls, .right-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  #arrow-buttons {
+    margin-top: 10px;
+  }
+}
