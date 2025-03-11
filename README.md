@@ -15,7 +15,7 @@ A web-based application for annotating videos by setting start and end times usi
 1. **Clone the Repository:**
 
 ```bash
-git clone https://github.com/yourusername/Video-Annotation-Tool.git
+git clone https://github.com/Theosiam/Video-Annotation-Tool.git
 cd Video-Annotation-Tool
 ```
 
@@ -56,8 +56,8 @@ http://localhost:10200
 
 3. **Annotate Videos:**
 
-- Use the left panel to select or add annotation classes.
-- Select a video from the right panel.
+- Use the left panel to select, add or delete annotation classes.
+- Select a video from the right panel for unfinished and finished folders.
 - Use the center panel to set start and end markers on the custom timebar and control playback.
 - Save your annotations and finalize the video when done.
 
