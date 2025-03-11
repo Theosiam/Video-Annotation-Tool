@@ -10,6 +10,8 @@ A web-based application for annotating videos by setting start and end times usi
 - Toggle between unfinished and finished videos.
 - Responsive design for a seamless user experience.
 
+![Video Annotation Tool Screenshot](images/11.03.2025_10.16.17_REC.png)
+
 ## Installation
 
 1. **Clone the Repository:**
